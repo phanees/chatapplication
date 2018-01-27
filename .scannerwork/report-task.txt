@@ -1,0 +1,6 @@
+projectKey=ChatApplication
+serverUrl=http://localhost:9000
+serverVersion=6.7.1.35068
+dashboardUrl=http://localhost:9000/dashboard/index/ChatApplication
+ceTaskId=AWE2tlgXFyoTarM5Bta1
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWE2tlgXFyoTarM5Bta1

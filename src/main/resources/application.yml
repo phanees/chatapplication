@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: ChatApplication
+#mongodb
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: chatdatabase
+      
+server:
+  port: 8888
+ 
+logging:
+  level:
+    org:
+      springframework: ERROR
+
+    
+
+        
