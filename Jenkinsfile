@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Get Code ') {
       steps {
-        git(url: 'https://mudiganti.phanees@innersource.accenture.com/scm/phm/chatapplication.git', branch: 'master')
+        git(url: 'https://github.com/phanees/chatapplication.git', branch: 'master')
       }
     }
   }
