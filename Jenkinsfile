@@ -10,13 +10,13 @@ pipeline {
     
     stage ('Test') {
       steps {
-        sh './mvnw clean test'
+        bat 'mvnw clean test'
       }
     }
         
     stage ('Install') {
       steps {
-        sh './mvnw clean package dockerfile:build'
+        bat 'mvnw clean package dockerfile:build'
       }
     }
   }
