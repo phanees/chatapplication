@@ -80,8 +80,9 @@ public class UserServiceImplTest {
 	public void whenValidUsername_thenUserShouldBeSaved() {
 		Users user = new Users("phanees","password","firstname","lastname");	
 		UserService us = mock(UserService.class);
-		doNothing().when(us).saveUser(isA(Users.class));
-		us.saveUser(user);			
+		doReturn(user).when(us).saveUser(user);
+		Users savedUser = us.saveUser(user);	
+		assertThat(savedUser).isNotNull();
 		verify(us, times(1)).saveUser(user);
 	}
 	
