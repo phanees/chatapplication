@@ -1,7 +1,6 @@
 pipeline {
   agent any
-  def rtMaven
-  
+    
   stages {
     stage('Get Code ') {
       steps {
