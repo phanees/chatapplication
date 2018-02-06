@@ -10,19 +10,19 @@ pipeline {
     
     stage ('Test Code') {
       steps {
-        bat 'mvn clean test'
+        sh 'mvn clean test'
       }
     }
         
     stage ('Build Docker Image') {
       steps {
-        bat 'mvn clean package dockerfile:build'
+        sh 'mvn clean package dockerfile:build'
       }
     }
     
       stage ('Push Docker Image') {
       steps {
-        bat 'mvn dockerfile:push'
+        sh 'mvn dockerfile:push'
       }
     }
   }
