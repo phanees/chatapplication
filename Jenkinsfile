@@ -8,15 +8,21 @@ pipeline {
       }
     }
     
-    stage ('Test') {
+    stage ('Test Code') {
       steps {
         bat 'mvn clean test'
       }
     }
         
-    stage ('Install') {
+    stage ('Build Docker Image') {
       steps {
         bat 'mvn clean package dockerfile:build'
+      }
+    }
+    
+      stage ('Push Docker Image') {
+      steps {
+        bat 'mvn dockerfile:push'
       }
     }
   }
