@@ -11,7 +11,7 @@ pipeline {
     
     stage ('Test Code') {
       steps {
-        sh './mvnw clean test'
+        sh 'mvn clean test'
       }
       post {
              always {
@@ -22,13 +22,13 @@ pipeline {
         
     stage ('Build Docker Image') {
       steps {
-        sh './mvnw clean package dockerfile:build'
+        sh 'mvn clean package dockerfile:build'
       }
     }
     
       stage ('Push Docker Image') {
       steps {
-        sh './mvnw dockerfile:push'
+        sh 'mvn dockerfile:push'
       }
     }
   }
