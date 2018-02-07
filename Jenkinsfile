@@ -10,9 +10,9 @@ pipeline {
     }
     
     stage ('Test Code') {
-      steps {
-        def mvn_version = 'maven-3.5.2'
+      def mvn_version = 'maven-3.5.2'
         withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
+      steps {        
           sh 'mvn clean test'
         }
       }
