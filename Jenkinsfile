@@ -23,19 +23,15 @@ pipeline {
         
     stage ('Build Docker Image') {
       steps {
-        def mvn_version = 'maven-3.5.2'
-        withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
-          sh 'mvn clean package dockerfile:build'
-        }
+           sh 'mvn clean package dockerfile:build'
+        
       }
     }
     
       stage ('Push Docker Image') {
       steps {
-        def mvn_version = 'maven-3.5.2'
-        withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
-          sh 'mvn dockerfile:push'
-        }
+         sh 'mvn dockerfile:push'
+        
       }
     }
   }
