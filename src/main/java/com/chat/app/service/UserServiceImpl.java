@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService{
 	public Users saveUser(Users user) {
 		logger.info("Inside UserServiceImpl --> saveUser():::::: {}", user); 
 		user.setPassword(user.getPassword()); 
-       	return userRepository.save(user);
+		return userRepository.save(user);
 	}
 
 	/**

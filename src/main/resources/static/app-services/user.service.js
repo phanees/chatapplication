@@ -35,7 +35,15 @@
         }
 
         function Delete(username) {
-            return $http.delete('http://localhost:8888/api/delete/' + username).then(handleSuccess, handleError('Error deleting user'));
+            return $http.get('http://localhost:8888/api/delete/' + username).then(handleSuccess, handleError('Error deleting user'));
+           /* .then(function OnSuccess(success) {
+        		var response = { success: true };
+               callback(response);
+            },
+            function onError(error){
+            	var response = { success: false, message: 'Unable to delete the user' };
+            	callback(response)
+            });*/
         }
 
         // private functions

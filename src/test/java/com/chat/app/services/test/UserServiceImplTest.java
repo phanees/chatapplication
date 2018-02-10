@@ -43,10 +43,14 @@ public class UserServiceImplTest {
 	
 	@Before
 	public void setUp() {
+		
 		Users user = new Users("phanees", "password", "firstName", "lastName");
 		Mockito.when(userRepository.findByUsername(user.getUsername())).thenReturn(user);		
 		Mockito.when(userRepository.findByUsername("wronguser")).thenReturn(null);
 		Mockito.when(userRepository.findByUsername("")).thenReturn(null);
+		
+		Users userToBeSaved = new Users("phanees_new","password","firstName","lastName");
+		Mockito.when(userRepository.save(userToBeSaved)).thenReturn(userToBeSaved);
 	}
 	
 	@Test
@@ -78,7 +82,7 @@ public class UserServiceImplTest {
 	}
 	
 	@Test
-	public void whenValidUsername_thenUserShouldBeSaved() {
+	public void whenUsernameDoesnotExist_thenUserShouldBeSaved() {
 		Users user = new Users("phanees","password","firstname","lastname");	
 		UserService us = mock(UserService.class);
 		doReturn(user).when(us).saveUser(user);
@@ -88,11 +92,19 @@ public class UserServiceImplTest {
 	}
 	
 	@Test
-	public void whenValidUsername_thenUserShouldBeDeleted() {
+	public void whenUsernameExists_thenUserNotShouldBeSaved() {
 		Users user = new Users("phanees","password","firstname","lastname");	
+		Users savedUser = userService.saveUser(user);			
+		assertThat(savedUser).isNull();
+	}
+	
+	@Test
+	public void whenValidUsername_thenUserShouldBeDeleted() {
+		Users user = new Users("phanees_new","password","firstname","lastname");	
 		UserService us = mock(UserService.class);
 		doNothing().when(us).deleteUser(isA(Users.class));
-		us.deleteUser(user);			
+		us.deleteUser(user);
+		assertThat(user).isNotNull();
 		verify(us, times(1)).deleteUser(user);
 	}
 	
@@ -111,5 +123,23 @@ public class UserServiceImplTest {
 		boolean userAuthenticated = userService.authenticate(username, password);		
 		assertThat(userAuthenticated).isEqualTo(false);
 	}
-
+	
+	@Test
+	public void whenEmptyUsernameAndPassword_thenUserShouldNotBeAuthenticated() {
+		String username = "";
+		String password = "";
+		boolean userAuthenticated = userService.authenticate(username, password);		
+		assertThat(userAuthenticated).isEqualTo(false);
+	}
+	
+	@Test
+	public void whenUsernameIsValid_thenUserShouldBeUpdated() {
+		Users user = new Users("phanees","password","firstname","lastname");	
+		UserService us = mock(UserService.class);
+		doReturn(user).when(us).saveUser(user);
+		doReturn(user).when(us).updateUser(user.getUsername(), user);
+		Users updatedUser = us.updateUser(user.getUsername(), user);	
+		assertThat(updatedUser.getUsername()).isEqualTo(user.getUsername());
+		verify(us, times(1)).updateUser(user.getUsername(),user);
+	}
 }

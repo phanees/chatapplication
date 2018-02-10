@@ -19,5 +19,9 @@ public interface UserRepository extends MongoRepository<Users, String> {
  	 * @return the users
  	 */
  	public Users findByUsername(String username);
+ 	
+ 	@SuppressWarnings("unchecked")
+	@Override
+ 	public Users save(Users user);
 	 
 }

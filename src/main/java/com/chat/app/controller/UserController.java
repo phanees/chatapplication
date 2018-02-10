@@ -73,7 +73,7 @@ public class UserController {
 	 * @param username the username
 	 * @return the response entity
 	 */
-	@RequestMapping(value = "/api/delete/{username:.+}", method=RequestMethod.DELETE)
+	@RequestMapping(value = "/api/delete/{username:.+}", method=RequestMethod.GET)
 	public @ResponseBody ResponseEntity<String> deleteUser(@PathVariable("username") String username) {
 		logger.info("Inside UserController --> deleteUser :: {}", username);
 		Users user = userService.findUserByUsername(username);

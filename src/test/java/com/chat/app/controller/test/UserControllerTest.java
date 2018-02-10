@@ -16,6 +16,7 @@ import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 import org.mockito.internal.verification.VerificationModeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -36,6 +37,7 @@ public class UserControllerTest {
 	
 	@MockBean
 	private UserService userService;
+
 	
 	@Test
 	public void testGetUserByUsername() throws Exception {
@@ -73,7 +75,7 @@ public class UserControllerTest {
 	@Test
 	public void testDeleteUser() throws Exception {
 		
-		   mvc.perform(delete("http://localhost:8888/api/delete/phanees").contentType(MediaType.APPLICATION_JSON))
+		   mvc.perform(get("http://localhost:8888/api/delete/phanees").contentType(MediaType.APPLICATION_JSON))
 		   .andExpect(status().isOk());
        verify(userService, VerificationModeFactory.times(1)).deleteUser(Mockito.anyObject());
        reset(userService);

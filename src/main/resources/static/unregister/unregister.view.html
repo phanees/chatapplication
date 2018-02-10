@@ -1,0 +1,25 @@
+<!DOCTYPE h1 PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<link rel="stylesheet" href="/css/app.css" />
+
+</head>
+<body>
+	
+		<h1>Hi {{vm.user.username}}!</h1>
+		<p>You've requested to be unregistered!! Click delete to get
+			unregistered.</p>
+		<ul>
+			<li>{{vm.user.username}} - <a ng-click="vm.deleteUser(vm.user.username)">Delete</a>
+			</li>
+		</ul>
+		<p>&nbsp;</p>
+		<p>
+			<a href="#!/login" class="btn btn-primary">Logout</a>
+		</p>
+
+	<script src="unregister.controller.js"></script>
+</body>
+</html>
