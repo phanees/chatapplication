@@ -22,28 +22,20 @@
         //}
 
         function GetByUsername(username) {
-            return $http.get('http://localhost:8888/api/users/' + username).then(handleSuccessData, handleError('Error getting user by id'));
+            return $http.get('/api/users/' + username).then(handleSuccessData, handleError('Error getting user by id'));
         }
 
       
         function Create(user) {
-            return $http.post('http://localhost:8888/api/register', user).then(handleSuccess, handleError('Error creating user'));
+            return $http.post('/api/register', user).then(handleSuccess, handleError('Error creating user'));
         }
 
         function Update(user) {
-            return $http.put('http://localhost:8888/api/update/' + user.username, user).then(handleSuccess, handleError('Error updating user'));
+            return $http.put('/api/update/' + user.username, user).then(handleSuccess, handleError('Error updating user'));
         }
 
         function Delete(username) {
-            return $http.get('http://localhost:8888/api/delete/' + username).then(handleSuccess, handleError('Error deleting user'));
-           /* .then(function OnSuccess(success) {
-        		var response = { success: true };
-               callback(response);
-            },
-            function onError(error){
-            	var response = { success: false, message: 'Unable to delete the user' };
-            	callback(response)
-            });*/
+            return $http.get('/api/delete/' + username).then(handleSuccess, handleError('Error deleting user'));
         }
 
         // private functions

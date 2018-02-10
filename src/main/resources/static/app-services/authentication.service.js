@@ -35,7 +35,7 @@
             /* Use this for real authentication
              ----------------------------------------------*/
         	
-            $http.post('http://localhost:8888/api/authenticate', { username: username, password: password })            
+            $http.post('/api/authenticate', { username: username, password: password })            
             	/*.then(function onSuccess(response) {
             		callback(response);
                 });*/
