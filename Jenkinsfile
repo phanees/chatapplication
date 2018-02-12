@@ -10,8 +10,12 @@ pipeline {
     }
     
     stage ('Test Code') {
-        steps {        
-          sh 'mvn clean test'
+        steps {  
+          if(isUnix()){
+            sh 'mvn clean test'
+          }else{
+            bat 'mvn clean test'
+          }
         
       }
       post {
@@ -23,15 +27,21 @@ pipeline {
         
     stage ('Build Docker Image') {
       steps {
+        if(isUnix()){
            sh 'mvn clean package dockerfile:build'
-        
+        }else{
+          bat 'mvn clean package dockerfile:build'
+        }        
       }
     }
     
       stage ('Push Docker Image') {
       steps {
-         sh 'mvn dockerfile:push'
-        
+         if(isUnix()){
+           sh 'mvn dockerfile:push'
+         }else{
+           bat 'mvn dockerfile:push'
+         }        
       }
     }
   }
